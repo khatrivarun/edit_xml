@@ -1,0 +1,18 @@
+- name: Copy and Execute Powershell Script on Windows VM
+  hosts: windows
+  strategy: debug
+  tasks:
+    - name: Copy PS Script File to Remote
+      ansible.windows.win_copy:
+        src: ./xml_process.ps1
+        dest: C:\Users\khatrivarun_dev\scripts\xml_process.ps1
+
+    - name: Run PS Script on Remote
+      ansible.windows.win_powershell:
+        script: |
+          C:\Users\khatrivarun_dev\scripts\xml_process.ps1 {{ xml_path }} {{ book_id }} {{ export_path }}
+
+    - name: Delete PS Script from Remote
+      ansible.windows.win_powershell:
+        script: |
+          Remove-Item C:\Users\khatrivarun_dev\scripts\xml_process.ps1

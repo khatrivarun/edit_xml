@@ -1,0 +1,4 @@
+ansible.cfg
+ConfigureWindowsVM.ps1
+credentials.txt
+books.xml
